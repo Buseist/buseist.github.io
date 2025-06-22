@@ -1,49 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Recipe Recommender</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Recommender</title>
+    <!-- Link to Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Link to custom styles -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts - Poppins for a modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gradient-to-br from-green-100 to-blue-100 min-h-screen flex items-center justify-center p-4 font-inter">
-  <div class="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full border border-gray-200">
-    <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">What's in Your Fridge? 🍳</h1>
-    
-    <div class="mb-6">
-      <p class="text-lg text-gray-700 mb-4 text-center">Select the ingredients you have:</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <!-- Ingredient Checkboxes -->
-        <label><input type="checkbox" id="egg"> Egg</label>
-        <label><input type="checkbox" id="tomato"> Tomato</label>
-        <label><input type="checkbox" id="cheese"> Cheese</label>
-        <label><input type="checkbox" id="bread"> Bread</label>
-        <label><input type="checkbox" id="onion"> Onion</label>
-        <label><input type="checkbox" id="potato"> Potato</label>
-        <label><input type="checkbox" id="pepper"> Pepper</label>
-        <label><input type="checkbox" id="milk"> Milk</label>
-        <label><input type="checkbox" id="flour"> Flour</label>
-        <label><input type="checkbox" id="butter"> Butter</label>
-        <label><input type="checkbox" id="pasta"> Pasta</label>
-        <label><input type="checkbox" id="yogurt"> Yogurt</label>
-        <label><input type="checkbox" id="rice"> Rice</label>
-        <label><input type="checkbox" id="groundMeat"> Ground Meat</label>
-      </div>
+<body class="bg-gradient-to-br from-green-50 to-emerald-100 font-poppins min-h-screen flex items-center justify-center p-4">
+    <div class="recipe-app-container bg-white p-6 sm:p-8 md:p-10 rounded-3xl shadow-2xl w-full max-w-lg mx-auto my-8 border border-green-200">
+        <h1 class="text-3xl sm:text-4xl font-bold text-center text-green-700 mb-4 drop-shadow-sm">Recipe Recommender</h1>
+        <p class="text-center text-gray-600 mb-8 text-lg">Select the ingredients you have, and I'll suggest recipes!</p>
+
+        <!-- Ingredient Checklist Section -->
+        <div class="ingredient-checklist mb-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <!-- Each checkbox is wrapped in a label for better clickability -->
+            <label class="ingredient-item flex items-center p-3 border border-gray-300 rounded-xl cursor-pointer transition-all duration-200 hover:bg-green-50 hover:border-green-400">
+                <input type="checkbox" id="egg" name="ingredient" value="egg" class="form-checkbox h-5 w-5 text-green-600 rounded-md focus:ring-green-500">
+                <span class="ml-2 text-gray-700 font-medium text-base">Egg 🥚</span>
+            </label>
+            <label class="ingredient-item flex items-center p-3 border border-gray-300 rounded-xl cursor-pointer transition-all duration-200 hover:bg-green-50 hover:border-green-400">
+                <input type="checkbox" id="tomato" name="ingredient" value="tomato" class="form-checkbox h-5 w-5 text-green-600 rounded-md focus:ring-green-500">
+                <span class="ml-2 text-gray-700 font-medium text-base">Tomato 🍅</span>
+            </label>
+            <label class="ingredient-item flex items-center p-3 border border-gray-300 rounded-xl cursor-pointer transition-all duration-200 hover:bg-green-50 hover:border-green-400">
+                <input type="checkbox" id="onion" name="ingredient" value="onion" class="form-checkbox h-5 w-5 text-green-600 rounded-md focus:ring-green-500">
+                <span class="ml-2 text-gray-700 font-medium text-base">Onion 🧅</span>
+            </label>
+            <label class="ingredient-item flex items-center p-3 border border-gray-300 rounded-xl cursor-pointer transition-all duration-200 hover:bg-green-50 hover:border-green-400">
+                <input type="checkbox" id="pepper" name="ingredient" value="pepper" class="form-checkbox h-5 w-5 text-green-600 rounded-md focus:ring-green-500">
+                <span class="ml-2 text-gray-700 font-medium text-base">Pepper 🫑</span>
+            </label>
+            <label class="ingredient-item flex items-center p-3 border border-gray-300 rounded-xl cursor-pointer transition-all duration-200 hover:bg-green-50 hover:border-green-400">
+                <input type="checkbox" id="pasta" name="ingredient" value="pasta" class="form-checkbox h-5 w-5 text-green-600 rounded-md focus:ring-green-500">
+                <span class="ml-2 text-gray-700 font-medium text-base">Pasta 🍝</span>
+            </label>
+            <label class="ingredient-item flex items-center p-3 border border-gray-300 rounded-xl cursor-pointer transition-all duration-200 hover:bg-green-50 hover:border-green-400">
+                <input type="checkbox" id="groundMeat" name="ingredient" value="groundMeat" class="form-checkbox h-5 w-5 text-green-600 rounded-md focus:ring-green-500">
+                <span class="ml-2 text-gray-700 font-medium text-base">Ground Meat 🥩</span>
+            </label>
+            <label class="ingredient-item flex items-center p-3 border border-gray-300 rounded-xl cursor-pointer transition-all duration-200 hover:bg-green-50 hover:border-green-400">
+                <input type="checkbox" id="flour" name="ingredient" value="flour" class="form-checkbox h-5 w-5 text-green-600 rounded-md focus:ring-green-500">
+                <span class="ml-2 text-gray-700 font-medium text-base">Flour 🍚</span>
+            </label>
+            <label class="ingredient-item flex items-center p-3 border border-gray-300 rounded-xl cursor-pointer transition-all duration-200 hover:bg-green-50 hover:border-green-400">
+                <input type="checkbox" id="butter" name="ingredient" value="butter" class="form-checkbox h-5 w-5 text-green-600 rounded-md focus:ring-green-500">
+                <span class="ml-2 text-gray-700 font-medium text-base">Butter 🧈</span>
+            </label>
+            <label class="ingredient-item flex items-center p-3 border border-gray-300 rounded-xl cursor-pointer transition-all duration-200 hover:bg-green-50 hover:border-green-400">
+                <input type="checkbox" id="sugar" name="ingredient" value="sugar" class="form-checkbox h-5 w-5 text-green-600 rounded-md focus:ring-green-500">
+                <span class="ml-2 text-gray-700 font-medium text-base">Sugar 🍬</span>
+            </label>
+            <label class="ingredient-item flex items-center p-3 border border-gray-300 rounded-xl cursor-pointer transition-all duration-200 hover:bg-green-50 hover:border-green-400">
+                <input type="checkbox" id="milk" name="ingredient" value="milk" class="form-checkbox h-5 w-5 text-green-600 rounded-md focus:ring-green-500">
+                <span class="ml-2 text-gray-700 font-medium text-base">Milk 🥛</span>
+            </label>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons flex flex-col sm:flex-row justify-center gap-4 mb-8">
+            <button id="suggestRecipesBtn" class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-3 px-7 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-300">
+                Suggest Recipes
+            </button>
+            <button id="clearBtn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-7 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-300">
+                Clear
+            </button>
+        </div>
+
+        <!-- Recipe Results Section -->
+        <div id="recipeResults" class="recipe-results mt-6 p-5 bg-green-50 border border-green-200 rounded-xl text-gray-800 hidden shadow-inner">
+            <h2 class="text-xl sm:text-2xl font-semibold text-green-800 mb-3 text-center">Recipe Recommender's Suggested Recipes:</h2>
+            <ul id="recipeList" class="list-disc pl-5 space-y-2 text-lg text-gray-700">
+                <!-- Recipes will be injected here by JavaScript -->
+            </ul>
+            <p id="noRecipeMessage" class="text-center text-lg text-gray-600 italic mt-4 hidden">Sorry, no recipe found with selected ingredients.</p>
+        </div>
     </div>
 
-    <div class="flex gap-4">
-      <button id="suggestButton" class="w-full bg-indigo-600 text-white font-semibold py-3 rounded-xl hover:bg-indigo-700 transition">Suggest Recipes</button>
-      <button id="clearButton" class="w-full bg-gray-300 text-gray-800 font-semibold py-3 rounded-xl hover:bg-gray-400 transition">Clear Selection</button>
-    </div>
-
-    <div id="suggestionsSection" class="mt-6 pt-6 border-t border-gray-200 hidden">
-      <h2 class="text-xl font-bold text-gray-800 mb-3 text-center">Suggested Recipes:</h2>
-      <ul id="recipeList" class="space-y-2"></ul>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+    <!-- Link to custom JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>

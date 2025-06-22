@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recipe Recommender</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-green-100 to-blue-100 min-h-screen flex items-center justify-center p-4 font-inter">
+  <div class="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full border border-gray-200">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">What's in Your Fridge? 🍳</h1>
+    
+    <div class="mb-6">
+      <p class="text-lg text-gray-700 mb-4 text-center">Select the ingredients you have:</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <!-- Ingredient Checkboxes -->
+        <label><input type="checkbox" id="egg"> Egg</label>
+        <label><input type="checkbox" id="tomato"> Tomato</label>
+        <label><input type="checkbox" id="cheese"> Cheese</label>
+        <label><input type="checkbox" id="bread"> Bread</label>
+        <label><input type="checkbox" id="onion"> Onion</label>
+        <label><input type="checkbox" id="potato"> Potato</label>
+        <label><input type="checkbox" id="pepper"> Pepper</label>
+        <label><input type="checkbox" id="milk"> Milk</label>
+        <label><input type="checkbox" id="flour"> Flour</label>
+        <label><input type="checkbox" id="butter"> Butter</label>
+        <label><input type="checkbox" id="pasta"> Pasta</label>
+        <label><input type="checkbox" id="yogurt"> Yogurt</label>
+        <label><input type="checkbox" id="rice"> Rice</label>
+        <label><input type="checkbox" id="groundMeat"> Ground Meat</label>
+      </div>
+    </div>
+
+    <div class="flex gap-4">
+      <button id="suggestButton" class="w-full bg-indigo-600 text-white font-semibold py-3 rounded-xl hover:bg-indigo-700 transition">Suggest Recipes</button>
+      <button id="clearButton" class="w-full bg-gray-300 text-gray-800 font-semibold py-3 rounded-xl hover:bg-gray-400 transition">Clear Selection</button>
+    </div>
+
+    <div id="suggestionsSection" class="mt-6 pt-6 border-t border-gray-200 hidden">
+      <h2 class="text-xl font-bold text-gray-800 mb-3 text-center">Suggested Recipes:</h2>
+      <ul id="recipeList" class="space-y-2"></ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

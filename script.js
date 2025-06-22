@@ -26,6 +26,31 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             name: "Simple Homemade Crepes",
             ingredients: ["egg", "milk", "flour", "butter"]
+        },
+        // New recipes with added ingredients
+        {
+            name: "Grilled Cheese Sandwich",
+            ingredients: ["bread", "cheese", "butter"]
+        },
+        {
+            name: "Tomato & Cheese Omelette",
+            ingredients: ["egg", "tomato", "cheese"]
+        },
+        {
+            name: "Potato Salad",
+            ingredients: ["potato", "egg", "onion"]
+        },
+        {
+            name: "Yogurt Soup (Yaylada Çorbası)", // A common Turkish yogurt soup example
+            ingredients: ["yogurt", "flour", "egg"]
+        },
+        {
+            name: "Simple Rice Pilaf",
+            ingredients: ["rice", "butter"]
+        },
+        {
+            name: "Cheesy Pasta Bake",
+            ingredients: ["pasta", "cheese", "milk"]
         }
         // Add more recipes here as needed following the same structure
     ];
@@ -38,9 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateIngredientLabelVisual = (checkbox) => {
         const label = checkbox.closest('label'); // Get the parent label element
         if (checkbox.checked) {
-            label.classList.add('bg-blue-100', 'border-blue-500', 'shadow-md');
+            label.classList.add('bg-blue-100', 'border-blue-500', 'shadow-md', 'checked-highlight');
         } else {
-            label.classList.remove('bg-blue-100', 'border-blue-500', 'shadow-md');
+            label.classList.remove('bg-blue-100', 'border-blue-500', 'shadow-md', 'checked-highlight');
         }
     };
 

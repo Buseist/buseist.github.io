@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ingredients: ["potato", "egg", "onion"]
         },
         {
-            name: "Yogurt Soup (Yaylada Çorbası)", // A common Turkish yogurt soup example
+            name: "Yogurt Soup", // Changed from "Yogurt Soup (Yaylada Çorbası)"
             ingredients: ["yogurt", "flour", "egg"]
         },
         {

@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ingredients: ["potato", "egg", "onion"]
         },
         {
-            name: "Yogurt Soup", // Changed from "Yogurt Soup (Yaylada Çorbası)"
+            name: "Yogurt Soup", // Parantez içindeki açıklama kaldırıldı.
             ingredients: ["yogurt", "flour", "egg"]
         },
         {

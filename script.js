@@ -1,97 +1,128 @@
+// Ensure the DOM is fully loaded before running the script
 document.addEventListener('DOMContentLoaded', () => {
-  const ingredients = {
-    egg: false,
-    tomato: false,
-    cheese: false,
-    bread: false,
-    onion: false,
-    potato: false,
-    pepper: false,
-    milk: false,
-    flour: false,
-    butter: false,
-    pasta: false,
-    yogurt: false,
-    rice: false,
-    groundMeat: false
-  };
+    // Get references to DOM elements
+    const ingredientCheckboxes = document.querySelectorAll('input[name="ingredient"]');
+    const suggestRecipesBtn = document.getElementById('suggestRecipesBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const recipeResultsDiv = document.getElementById('recipeResults');
+    const recipeListUl = document.getElementById('recipeList');
+    const noRecipeMessageP = document.getElementById('noRecipeMessage');
 
-  const recipeList = document.getElementById('recipeList');
-  const suggestionsSection = document.getElementById('suggestionsSection');
-  const suggestButton = document.getElementById('suggestButton');
-  const clearButton = document.getElementById('clearButton');
+    // Define the recipes with their required ingredients
+    // This structure allows for easy lookup based on selected ingredients
+    const recipes = [
+        {
+            name: "Menemen",
+            ingredients: ["egg", "tomato", "onion", "pepper"]
+        },
+        {
+            name: "Pasta with Ground Meat",
+            ingredients: ["pasta", "groundMeat", "tomato"]
+        },
+        {
+            name: "Flour Halva",
+            ingredients: ["flour", "butter", "sugar"]
+        },
+        {
+            name: "Simple Homemade Crepes",
+            ingredients: ["egg", "milk", "flour", "butter"]
+        }
+        // Add more recipes here as needed following the same structure
+    ];
 
-  function updateIngredients() {
-    for (const key in ingredients) {
-      const checkbox = document.getElementById(key);
-      ingredients[key] = checkbox.checked;
-    }
-  }
+    /**
+     * Updates the visual state of an ingredient label based on its checkbox.
+     * When checked, it adds a highlight class; when unchecked, it removes it.
+     * @param {HTMLInputElement} checkbox - The checkbox element.
+     */
+    const updateIngredientLabelVisual = (checkbox) => {
+        const label = checkbox.closest('label'); // Get the parent label element
+        if (checkbox.checked) {
+            label.classList.add('bg-blue-100', 'border-blue-500', 'shadow-md');
+        } else {
+            label.classList.remove('bg-blue-100', 'border-blue-500', 'shadow-md');
+        }
+    };
 
-  function suggestRecipes() {
-    updateIngredients();
-    const suggestions = [];
+    /**
+     * Initializes the visual state for all ingredient labels based on their initial checkbox state.
+     */
+    const initializeIngredientLabelVisuals = () => {
+        ingredientCheckboxes.forEach(checkbox => {
+            updateIngredientLabelVisual(checkbox);
+        });
+    };
 
-    if (ingredients.egg && ingredients.tomato && ingredients.pepper && ingredients.onion) {
-      suggestions.push("Menemen (Turkish scrambled eggs with vegetables)");
-    }
+    // Attach event listeners to each checkbox for immediate visual feedback
+    ingredientCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            updateIngredientLabelVisual(checkbox);
+        });
+    });
 
-    if (ingredients.egg && ingredients.bread && ingredients.cheese) {
-      suggestions.push("Breakfast Toast with Egg and Cheese");
-    }
+    /**
+     * Determines which recipes can be made based on the user's selected ingredients.
+     */
+    const suggestRecipes = () => {
+        // Get the currently selected ingredients
+        const selectedIngredients = Array.from(ingredientCheckboxes)
+            .filter(checkbox => checkbox.checked)
+            .map(checkbox => checkbox.value);
 
-    if (ingredients.potato && ingredients.onion && ingredients.butter) {
-      suggestions.push("Fried Potatoes with Onion and Butter");
-    }
+        const matchingRecipes = [];
 
-    if (ingredients.pasta && ingredients.cheese && ingredients.milk) {
-      suggestions.push("Creamy Cheese Pasta");
-    }
+        // Iterate through all defined recipes
+        recipes.forEach(recipe => {
+            // Check if all ingredients required for the current recipe are present in the selectedIngredients
+            const hasAllIngredients = recipe.ingredients.every(requiredIngredient =>
+                selectedIngredients.includes(requiredIngredient)
+            );
 
-    if (ingredients.rice && ingredients.yogurt && ingredients.butter) {
-      suggestions.push("Buttered Rice with Yogurt");
-    }
+            if (hasAllIngredients) {
+                matchingRecipes.push(recipe.name);
+            }
+        });
 
-    if (ingredients.pasta && ingredients.groundMeat && ingredients.tomato) {
-      suggestions.push("Pasta with Ground Meat and Tomato Sauce");
-    }
+        // Clear previous results
+        recipeListUl.innerHTML = '';
+        noRecipeMessageP.classList.add('hidden');
+        recipeResultsDiv.classList.remove('hidden'); // Ensure the results box is visible
 
-    if (ingredients.flour && ingredients.butter && ingredients.sugar) {
-      suggestions.push("Flour Halva (Sweet Dessert)");
-    }
+        // Display results
+        if (matchingRecipes.length > 0) {
+            // If matching recipes are found, display them as a list
+            matchingRecipes.forEach(recipeName => {
+                const listItem = document.createElement('li');
+                listItem.textContent = recipeName;
+                recipeListUl.appendChild(listItem);
+            });
+        } else {
+            // If no recipes are found, display the "No recipe found" message
+            recipeListUl.innerHTML = ''; // Ensure the list is empty
+            noRecipeMessageP.classList.remove('hidden');
+        }
+    };
 
-    if (ingredients.flour && ingredients.egg && ingredients.milk && ingredients.butter) {
-      suggestions.push("Simple Homemade Crepes");
-    }
+    /**
+     * Resets all ingredient selections and clears the recipe results display.
+     */
+    const clearSelections = () => {
+        // Uncheck all checkboxes
+        ingredientCheckboxes.forEach(checkbox => {
+            checkbox.checked = false;
+            updateIngredientLabelVisual(checkbox); // Update visual feedback
+        });
 
-    recipeList.innerHTML = '';
+        // Hide the results box and clear its content
+        recipeResultsDiv.classList.add('hidden');
+        recipeListUl.innerHTML = '';
+        noRecipeMessageP.classList.add('hidden');
+    };
 
-    if (suggestions.length > 0) {
-      suggestionsSection.classList.remove('hidden');
-      suggestions.forEach(recipe => {
-        const item = document.createElement('li');
-        item.className = 'bg-green-100 text-green-800 px-4 py-3 rounded-lg border border-green-300 shadow-sm text-lg font-medium';
-        item.textContent = recipe;
-        recipeList.appendChild(item);
-      });
-    } else {
-      suggestionsSection.classList.remove('hidden');
-      const noMatch = document.createElement('li');
-      noMatch.className = 'text-center text-gray-600 italic';
-      noMatch.textContent = 'Sorry, no recipe found with selected ingredients.';
-      recipeList.appendChild(noMatch);
-    }
-  }
+    // Attach event listeners to the buttons
+    suggestRecipesBtn.addEventListener('click', suggestRecipes);
+    clearBtn.addEventListener('click', clearSelections);
 
-  function clearSelections() {
-    for (const key in ingredients) {
-      const checkbox = document.getElementById(key);
-      checkbox.checked = false;
-    }
-    suggestionsSection.classList.add('hidden');
-    recipeList.innerHTML = '';
-  }
-
-  suggestButton.addEventListener('click', suggestRecipes);
-  clearButton.addEventListener('click', clearSelections);
+    // Initialize visual state on load (in case some checkboxes are pre-checked via browser state)
+    initializeIngredientLabelVisuals();
 });

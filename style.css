@@ -1,4 +1,99 @@
-/* style.css */
+/* Custom styles to enhance Tailwind CSS */
+
+/* Ensure the body uses the Poppins font, with a fallback */
 body {
-  font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    /* Background gradient applied via Tailwind classes in index.html */
 }
+
+/* Main container styling already largely handled by Tailwind classes in HTML */
+.recipe-app-container {
+    /* Shadow and border adjusted in HTML for a softer, deeper look */
+}
+
+/* Styling for ingredient checklist items */
+.ingredient-item {
+    transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Visual feedback for checked ingredient items */
+.ingredient-item input[type="checkbox"]:checked + span {
+    color: #047857; /* Emerald-700 for checked text */
+    font-weight: 600; /* semibold */
+}
+
+.ingredient-item input[type="checkbox"]:checked {
+    border-color: #047857; /* Emerald-700 */
+    background-color: #047857; /* Emerald-700 */
+}
+
+/* Highlight the whole label when its checkbox is checked */
+/* This class will be added/removed by JavaScript */
+.ingredient-item.checked-highlight {
+    background-color: #ecfdf5; /* Green-50 */
+    border-color: #34d399; /* Green-400 */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* subtle shadow */
+}
+
+/* Styling for buttons - primary and secondary */
+/* Gradients and shadows are defined in HTML with Tailwind */
+.action-buttons button {
+    /* Add a slight transform on active for a press effect */
+    transition: transform 0.1s ease-in-out;
+}
+
+.action-buttons button:active {
+    transform: scale(0.98);
+}
+
+
+/* Styling for the recipe results box */
+.recipe-results {
+    /* Tailwind classes handle most of this. */
+    /* text-green-800 for heading for better contrast */
+}
+
+/* Responsive adjustments - Tailwind handles most, but can add more here */
+@media (max-width: 640px) {
+    .recipe-app-container {
+        padding: 1.5rem; /* Slightly reduced padding on small screens */
+    }
+    .text-3xl {
+        font-size: 2rem; /* Adjust heading size */
+    }
+    .action-buttons {
+        flex-direction: column; /* Stack buttons vertically on small screens */
+    }
+}
+
+/* Custom checkbox styling (optional, Tailwind handles basic look) */
+/* This is more advanced if default styling isn't enough */
+/* input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    border: 2px solid #cbd5e0; /* gray-300 */
+    border-radius: 0.375rem; /* rounded-md */
+    width: 1.25rem;
+    height: 1.25rem;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #059669; /* green-600 */
+    border-color: #059669;
+}
+
+input[type="checkbox"]:checked::after {
+    content: '✔';
+    font-size: 0.8rem;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+} */
+
